@@ -20,7 +20,7 @@ Route::post('register', 'API\UserController@register');
 Route::group(['middleware' => 'auth:api', 'namespace'=> 'API'], function(){
 	
 
-	Route::post('post'			 , 'PostController@index'  );
+	Route::get('post'			 , 'PostController@index'  );
 	Route::get('post/create'	 , 'PostController@create' );
 	Route::post('post'			 , 'PostController@store'  );
 	Route::get('post/{post}'	 , 'PostController@show'   );

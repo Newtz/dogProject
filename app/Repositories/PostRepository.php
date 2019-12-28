@@ -5,14 +5,14 @@
 namespace App\Repositories;
 
 use App\Interfaces\PostRepositoryInterface;
-use App\Http\Models\Post;
+use App\Models\Post;
 
 class PostRepository implements PostRepositoryInterface
 {
 
 	public function all()
 	{
- 		//return  everything
+ 		return Post::all();
 	}
 
 	public function findById($post)

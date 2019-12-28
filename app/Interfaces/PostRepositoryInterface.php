@@ -1,8 +1,8 @@
 <?php 
 
-namespace App\Interfaces\PostRepositoryInterface;
+namespace App\Interfaces;
 
-interface PostRepositoryInterface 
+interface PostRepositoryInterface
 {
 	
 	public function all();

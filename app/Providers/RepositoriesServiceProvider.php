@@ -6,7 +6,7 @@ use App\Interfaces\PostRepositoryInterface;
 use App\Repositories\PostRepository;
 use Illuminate\Support\ServiceProvider;
 
-class RepositoriesSericeProvider extends ServiceProvider
+class RepositoriesServiceProvider extends ServiceProvider
 {
     /**
      * Register services.

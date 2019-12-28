@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Interface\PostRepositoryInterface;
+use App\Interfaces\PostRepositoryInterface;
 
 class PostController extends Controller
 {
@@ -13,7 +13,7 @@ class PostController extends Controller
 
     public function __construct(PostRepositoryInterface $postRepository)
     {
-        $this->$postRepository = $postRepository;
+        $this->postRepository = $postRepository;
     }
 
 
