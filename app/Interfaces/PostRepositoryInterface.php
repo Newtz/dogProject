@@ -13,4 +13,6 @@ interface PostRepositoryInterface
 
 	public function deletePost($postId);
 
+	public function updatePost($postId);
+
 }

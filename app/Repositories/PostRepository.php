@@ -57,5 +57,10 @@ class PostRepository implements PostRepositoryInterface
 		return response()->json(['message'=>'Record Deleted'], 200);
 	}
 
+	public function updatePost($postId)
+	{
+		
+	}
+
 
 }

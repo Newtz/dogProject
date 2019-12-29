@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Interfaces\PostRepositoryInterface;
 use App\Http\Requests\PostRequest;
+use App\Helpers\GeneralHelper;
 
 class PostController extends Controller
 {
@@ -19,11 +20,13 @@ class PostController extends Controller
 
     public function index()
     {
-        return $this->postRepository->all();
-    }
- 
+      return $this->postRepository->all();
+    } 
+
     public function store(PostRequest $request)
     {
+        GeneralHelper::uploadImage($request);
+
     	return $this->postRepository->createPost($request);
     }
     
