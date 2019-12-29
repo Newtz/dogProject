@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Interfaces\PostRepositoryInterface;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
@@ -16,41 +17,36 @@ class PostController extends Controller
         $this->postRepository = $postRepository;
     }
 
-
     public function index()
     {
         return $this->postRepository->all();
     }
  
-    public function create()
+    public function store(PostRequest $request)
     {
-    	
-    }
-
-    public function store()
-    {
-    	
+    	return $this->postRepository->createPost($request);
     }
     
-    public function show()
+    public function show($postId)
     {
-    	
+    	return $this->postRepository->findById($postId);
     }
     
-    public function edit()
+    public function edit($postId)
+    {
+    	return $this->postRepository->findById($postId);
+    }
+
+    public function update(PostRequest $request, $postId)
     {
     	
     }
 
-    public function update()
+    public function destroy($postId)
     {
-    	
+    	return $this->postRepository->deletePost($postId);
     }
-
-    public function destroy()
-    {
-    	
-    }
+    
   
 }
 

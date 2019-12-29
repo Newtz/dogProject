@@ -7,6 +7,10 @@ interface PostRepositoryInterface
 	
 	public function all();
 
-	public function findById($post);
+	public function findById($postId);
+
+	public function createPost($request);
+
+	public function deletePost($postId);
 
 }
