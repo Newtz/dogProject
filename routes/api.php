@@ -14,10 +14,10 @@ use Illuminate\Http\Request;
 */
 
 
-Route::post('login', 'API\UserController@login');
-Route::post('register', 'API\UserController@register');
+Route::post('login', 'APIController@login');
+Route::post('register', 'APIController@register');
 
-Route::group(['middleware' => 'auth:api', 'namespace'=> 'API'], function(){
+Route::group(['middleware' => 'auth.jwt', 'namespace'=> 'API'], function(){
 	Route::get('post'			   		   , 'PostController@index'  );
 	Route::post('post'			   		   , 'PostController@store'  );
 	Route::get('post/{postId}'	   		   , 'PostController@show'   );
