@@ -5,9 +5,9 @@ namespace App\Helpers;
 class GeneralHelper
 {
 
-	public static function uploadImage($request)
+	public static function uploadImage($request, $index)
 	{
-		$image 	   = $request->file('post_image');
+		$image 	   = $request->file($index);
 		$request->request->add(['image_name' => $image->store('post_images', 'public') ]);
 	}
 }

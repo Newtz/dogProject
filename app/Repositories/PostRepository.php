@@ -10,7 +10,7 @@ use Auth;
 
 class PostRepository implements PostRepositoryInterface
 {
-
+	
 	public function all()
 	{
 		$posts = Post::all();
@@ -59,7 +59,13 @@ class PostRepository implements PostRepositoryInterface
 
 	public function updatePost($postId)
 	{
-		
+		$post = Post::find($postId);
+
+		$post->title 	   = request()->title;
+		$post->description = request()->description;
+		$post->save();
+
+		return response()->json($post, 201);
 	}
 
 

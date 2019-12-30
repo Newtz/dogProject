@@ -23,7 +23,6 @@ class CreatePostsTable extends Migration
             $table->text('latitude');
             $table->text('longitude');
             $table->enum('status', ['active', 'inactive']);
-            $table->text('image_name');
             $table->timestamps();
         });
     }

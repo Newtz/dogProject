@@ -12,10 +12,12 @@ class PostController extends Controller
 {
 
     private $postRepository;
+    private $requestIndex;
 
     public function __construct(PostRepositoryInterface $postRepository)
     {
         $this->postRepository = $postRepository;
+        $this->requestIndex  = 'post_image';
     }
 
     public function index()
@@ -25,7 +27,7 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
-        GeneralHelper::uploadImage($request);
+        GeneralHelper::uploadImage($request, $this->requestIndex);
 
     	return $this->postRepository->createPost($request);
     }
@@ -42,7 +44,7 @@ class PostController extends Controller
 
     public function update(PostRequest $request, $postId)
     {
-    	//
+    	return $this->postRepository->updatePost($postId);
     }
 
     public function destroy($postId)

@@ -24,9 +24,9 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:3',
-            'description' => 'required',
-            'post_image' => 'required',
+            'title' => 'required|min:5',
+            'description' => 'required|min:10',
+            //'post_image' => 'required',
         ];
     }
 
@@ -35,7 +35,7 @@ class PostRequest extends FormRequest
         return [
             'title.required' => 'The field title is required!',
             'description.required' => 'The field  description is required!',
-            'title.min' => 'Please, enter at least 3 characters!',
+            'title.min' => 'Please, enter at least 10 characters!',
         ];
     }
 }
