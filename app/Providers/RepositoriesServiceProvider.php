@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Interfaces\PostRepositoryInterface;
 use App\Repositories\PostRepository;
+use App\Interfaces\ImageRepositoryInterface;
+use App\Repositories\ImageRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoriesServiceProvider extends ServiceProvider
@@ -26,5 +28,6 @@ class RepositoriesServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->bind(PostRepositoryInterface::class, PostRepository::class);
+        $this->app->bind(ImageRepositoryInterface::class, ImageRepository::class);
     }
 }

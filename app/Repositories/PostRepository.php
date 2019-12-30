@@ -15,14 +15,14 @@ class PostRepository implements PostRepositoryInterface
 	{
 		$posts = Post::all();
 
- 		return response()->json($posts, 200);
+ 		return $posts;
 	}
 
 	public function findById($postId)
 	{
 		$post = Post::find($postId);
 
-		return response()->json($post, 200);
+		return $post;
 	}
 
 	public function createPost($request)
@@ -35,11 +35,10 @@ class PostRepository implements PostRepositoryInterface
 		$post->local 	    = $request->local;
 		$post->latitude     = $request->latitude;
 		$post->longitude    = $request->longitude;
-		$post->image_name   = $request->image_name;
 
 		$post->save();
 
-		 return response()->json($post, 201);
+		 return $post;
 	}
 
 	public function deletePost($postId)
@@ -61,11 +60,15 @@ class PostRepository implements PostRepositoryInterface
 	{
 		$post = Post::find($postId);
 
-		$post->title 	   = request()->title;
-		$post->description = request()->description;
+		$post->title 	    = request()->has('title')       ? request()->title       : $post->title;
+		$post->description  = request()->has('description') ? request()->description : $post->description;
+		$post->local 	    = request()->has('local') 	   ?  request()->local       : $post->local;
+		$post->latitude     = request()->has('latitude')   ?  request()->latitude    : $post->latitude;
+		$post->longitude    = request()->has('longitude')  ?  request()->longitude   : $post->longitude;
+
 		$post->save();
 
-		return response()->json($post, 201);
+		return $post;
 	}
 
 

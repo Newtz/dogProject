@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Image;
+use App\User;
 
 class Post extends Model
 {
@@ -14,11 +16,11 @@ class Post extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class, 'id', 'user_id');
     }
 
     public function images()
     {
-        return $this->hasMany('App\Models\Image');
+        return $this->hasMany(Image::class, 'post_id', 'id');
     }
 }
