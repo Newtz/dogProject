@@ -42,7 +42,7 @@ class PostController extends Controller
 
     public function update(PostRequest $request, $postId)
     {
-    	
+    	//
     }
 
     public function destroy($postId)
