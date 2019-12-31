@@ -27,7 +27,7 @@ class PostController extends Controller
 
     public function index()
     {
-      return $this->postRepository->all();
+        return response()->json($this->postRepository->all(), 200);
     } 
 
     public function store(PostRequest $request)
@@ -36,7 +36,7 @@ class PostController extends Controller
         $post          =  $this->postRepository->createPost($request);
         $image         =  $this->imageRepository->saveImagePath($request, $post->id);
 
-    	return response()->json($post->with(['images'])->get(), 201);
+    	return response()->json($post->with(['images'])->findOrFail($post->id), 201);
     }
     
     public function show($postId)

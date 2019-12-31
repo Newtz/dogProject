@@ -13,7 +13,7 @@ class PostRepository implements PostRepositoryInterface
 	
 	public function all()
 	{
-		$posts = Post::all();
+		$posts = Post::with(['images'])->get();
 
  		return $posts;
 	}

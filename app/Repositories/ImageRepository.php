@@ -13,14 +13,14 @@ class ImageRepository implements ImageRepositoryInterface
 	
 	public function all()
 	{
-		$images = Image::all();
+		$images = Image::with(['post'])->get();
 
  		return $images;
 	}
 
 	public function imagesByPost($postId)
 	{
-		$image = Image::where('post_id', $postId)->get();
+		$image = Image::with(['post'])->findOrFail($postId);
 
 		return $image;
 	}
