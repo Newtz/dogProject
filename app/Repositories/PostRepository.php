@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 
@@ -10,7 +10,7 @@ use Auth;
 
 class PostRepository implements PostRepositoryInterface
 {
-	
+
 	public function all()
 	{
 		$posts = Post::with(['images'])->get();
@@ -20,13 +20,13 @@ class PostRepository implements PostRepositoryInterface
 
 	public function findById($postId)
 	{
-		$post = Post::find($postId);
+		$post = Post::with(['images'])->findOrFail($postId);
 
 		return $post;
 	}
 
 	public function createPost($request)
-	{	
+	{
 		$post = new Post;
 
 		$post->title 	    = $request->title;

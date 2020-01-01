@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Image;
+use App\Models\Comment;
 use App\User;
 
 class Post extends Model
@@ -22,5 +23,10 @@ class Post extends Model
     public function images()
     {
         return $this->hasMany(Image::class, 'post_id', 'id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'post_id', 'id');
     }
 }
