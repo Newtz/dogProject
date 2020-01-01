@@ -22,28 +22,32 @@ class PostController extends Controller
     {
         $this->postRepository = $postRepository;
         $this->imageRepository = $imageRepository;
-        $this->requestIndex  = 'image_path';
+        $this->requestIndex  = 'images';
     }
 
     public function index()
     {
         return response()->json($this->postRepository->all(), 200);
-    } 
+    }
 
     public function store(PostRequest $request)
     {
-        GeneralHelper::uploadImage($request, $this->requestIndex);
         $post          =  $this->postRepository->createPost($request);
-        $image         =  $this->imageRepository->saveImagePath($request, $post->id);
+        $numberOfImagesUploaded = GeneralHelper::uploadImage($request, $this->requestIndex);
+
+        for($i = 0; $i < $numberOfImagesUploaded; $i++)
+        {
+            $image =  $this->imageRepository->saveImagePath($request['path_'.$i], $post->id);
+        }
 
     	return response()->json($post->with(['images'])->findOrFail($post->id), 201);
     }
-    
+
     public function show($postId)
     {
     	return response()->json($this->postRepository->findById($postId), 201);
     }
-    
+
     public function edit($postId)
     {
     	return response()->json($this->postRepository->findById($postId), 201);
@@ -58,7 +62,7 @@ class PostController extends Controller
     {
     	return $this->postRepository->deletePost($postId);
     }
-    
-  
+
+
 }
 

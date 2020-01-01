@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 
@@ -10,7 +10,7 @@ use Auth;
 
 class ImageRepository implements ImageRepositoryInterface
 {
-	
+
 	public function all()
 	{
 		$images = Image::with(['post'])->get();
@@ -25,11 +25,11 @@ class ImageRepository implements ImageRepositoryInterface
 		return $image;
 	}
 
-	public function saveImagePath($request, $postId)
+	public function saveImagePath($path, $postId)
 	{
 		$image = new Image;
 
-		$image->image_path 		= $request->path;
+		$image->image_path 		= $path;
 		$image->post_id 	    = $postId;
 
 		$image->save();
