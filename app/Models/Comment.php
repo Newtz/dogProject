@@ -8,6 +8,7 @@ use App\Models\Post;
 class Comment extends Model
 {
     protected $guarded = [];
+    public $timestamps = false;
 
     public function post()
     {

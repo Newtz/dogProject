@@ -18,6 +18,13 @@ class PostRepository implements PostRepositoryInterface
  		return $posts;
 	}
 
+    public function commentsByPost($postId)
+    {
+        $post = Post::find($postId);
+
+        return $post->comments()->get();
+    }
+
 	public function findById($postId)
 	{
 		$post = Post::with(['images'])->findOrFail($postId);

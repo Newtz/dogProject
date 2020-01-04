@@ -10,7 +10,3 @@ Initial project that aims in creating a commuity focused on finding home to lost
     our app to have access to your GPS location by clicking on the confirmation
     button. Once you have completed these steps, starting creating posts once you
     find a lost animal in the street. 
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

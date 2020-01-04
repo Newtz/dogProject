@@ -13,9 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-
-Route::post('login', 'APIController@login');
-Route::post('register', 'APIController@register');
+Route::group(['namespace'=> 'API'], function(){
+    Route::post('login', 'APIController@login');
+    Route::post('register', 'APIController@register');
+});
 
 Route::group(['middleware' => 'auth.jwt', 'namespace'=> 'API'], function(){
 	Route::get('post'			   		   , 'PostController@index'  );
@@ -24,10 +25,10 @@ Route::group(['middleware' => 'auth.jwt', 'namespace'=> 'API'], function(){
 	Route::post('post/update/{postId}'	   , 'PostController@update' );
     Route::post('post/delete/{postId}'	   , 'PostController@destroy');
 
-    Route::get('post'			   		   , 'CommentController@index'  );
-	Route::post('post'			   		   , 'CommentController@store'  );
-	Route::get('post/{postId}'	   		   , 'CommentController@show'   );
-	Route::get('post/{postId}/edit'		   , 'CommentController@edit'   );
-	Route::post('post/update/{postId}'	   , 'CommentController@update' );
-	Route::post('post/delete/{postId}'	   , 'CommentController@destroy');
+    Route::get('comment/{postId}'			   	   , 'CommentController@index'  );
+	Route::post('comment'			   		       , 'CommentController@store'  );
+	Route::get('comment/{commentId}'	   		   , 'CommentController@show'   );
+	Route::post('comment/update/{commentId}'	   , 'CommentController@update' );
+    Route::post('comment/delete/{commentId}'	   , 'CommentController@destroy');
+    Route::post('comment/delete/all/{postId}'	   , 'CommentController@destroyAll');
 });

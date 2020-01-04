@@ -45,12 +45,12 @@ class PostController extends Controller
 
     public function show($postId)
     {
-    	return response()->json($this->postRepository->findById($postId), 201);
+    	return response()->json($this->postRepository->findById($postId), 200);
     }
 
     public function update(PostRequest $request, $postId)
     {
-    	return response()->json($this->postRepository->updatePost($postId), 201);
+    	return response()->json($this->postRepository->updatePost($postId), 200);
     }
 
     public function destroy($postId)
