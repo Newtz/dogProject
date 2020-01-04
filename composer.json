@@ -1,10 +1,12 @@
 {
-    "name": "laravel/laravel",
+    "name": "DOGAÇÃO",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Find a needed Pet.",
     "keywords": [
         "framework",
-        "laravel"
+        "laravel",
+        "dog",
+        "help",
     ],
     "license": "MIT",
     "require": {

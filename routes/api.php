@@ -21,7 +21,13 @@ Route::group(['middleware' => 'auth.jwt', 'namespace'=> 'API'], function(){
 	Route::get('post'			   		   , 'PostController@index'  );
 	Route::post('post'			   		   , 'PostController@store'  );
 	Route::get('post/{postId}'	   		   , 'PostController@show'   );
-	Route::get('post/{postId}/edit'		   , 'PostController@edit'   );
 	Route::post('post/update/{postId}'	   , 'PostController@update' );
-	Route::post('post/delete/{postId}'	   , 'PostController@destroy');
+    Route::post('post/delete/{postId}'	   , 'PostController@destroy');
+
+    Route::get('post'			   		   , 'CommentController@index'  );
+	Route::post('post'			   		   , 'CommentController@store'  );
+	Route::get('post/{postId}'	   		   , 'CommentController@show'   );
+	Route::get('post/{postId}/edit'		   , 'CommentController@edit'   );
+	Route::post('post/update/{postId}'	   , 'CommentController@update' );
+	Route::post('post/delete/{postId}'	   , 'CommentController@destroy');
 });
