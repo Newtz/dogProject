@@ -11,6 +11,8 @@ interface ImageRepositoryInterface
 
 	public function saveImagePath($path, $postId);
 
-	public function deleteImage($imageId);
+    public function deleteImage($imageId);
+
+    public function deleteAllImagesByPostId($postId);
 
 }

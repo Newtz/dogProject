@@ -48,7 +48,7 @@ class PostController extends Controller
     	return response()->json($this->postRepository->findById($postId), 200);
     }
 
-    public function update(PostRequest $request, $postId)
+    public function update(Request $request, $postId)
     {
     	return response()->json($this->postRepository->updatePost($postId), 200);
     }

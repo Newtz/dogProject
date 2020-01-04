@@ -27,6 +27,8 @@ class PostRequest extends FormRequest
             'title' => 'required|min:5',
             'description' => 'required|min:10',
             'images' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required'
         ];
     }
 
@@ -35,6 +37,8 @@ class PostRequest extends FormRequest
         return [
             'title.required' => 'The field title is required!',
             'description.required' => 'The field  description is required!',
+            'latitude.required' => 'latitude is required!',
+            'longitude.required' => 'longitude is required!',
             'title.min' => 'Please, enter at least 10 characters!',
             'images' => 'Please, upload a image!'
         ];

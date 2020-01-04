@@ -6,6 +6,7 @@ namespace App\Repositories;
 
 use App\Interfaces\ImageRepositoryInterface;
 use App\Models\Image;
+use App\Models\Post;
 use Auth;
 
 class ImageRepository implements ImageRepositoryInterface
@@ -51,6 +52,15 @@ class ImageRepository implements ImageRepositoryInterface
 		$image->delete();
 
 		return response()->json(['message'=>'Record Deleted'], 200);
-	}
+    }
+
+    public function deleteAllImagesByPostId($postId)
+    {
+        $post = Post::findOrFail($postId);
+
+        $post->images()->forceDelete();
+
+        return response()->json(['message'=>'All records were deleted'], 200);
+    }
 
 }

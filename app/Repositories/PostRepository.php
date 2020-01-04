@@ -5,11 +5,22 @@
 namespace App\Repositories;
 
 use App\Interfaces\PostRepositoryInterface;
+use App\Interfaces\CommentInterface;
+use App\Interfaces\ImageRepositoryInterface;
 use App\Models\Post;
 use Auth;
 
 class PostRepository implements PostRepositoryInterface
 {
+
+    private $imageRepository;
+    private $commentRepository;
+
+    public function __construct(ImageRepositoryInterface $imageRepository, CommentInterface $commentRepository)
+    {
+        $this->commentRepository = $commentRepository ;
+        $this->imageRepository =  $imageRepository;
+    }
 
 	public function all()
 	{
@@ -58,6 +69,8 @@ class PostRepository implements PostRepositoryInterface
             ], 404);
         }
 
+        $this->commentRepository->deleteAllCommentsByPost($postId);
+        $this->imageRepository->deleteAllImagesByPostId($postId);
 		$post->delete();
 
 		return response()->json(['message'=>'Record Deleted'], 200);
@@ -67,11 +80,11 @@ class PostRepository implements PostRepositoryInterface
 	{
 		$post = Post::find($postId);
 
-		$post->title 	    = request()->has('title')       ? request()->title       : $post->title;
-		$post->description  = request()->has('description') ? request()->description : $post->description;
-		$post->local 	    = request()->has('local') 	   ?  request()->local       : $post->local;
-		$post->latitude     = request()->has('latitude')   ?  request()->latitude    : $post->latitude;
-		$post->longitude    = request()->has('longitude')  ?  request()->longitude   : $post->longitude;
+		$post->title 	    = request()->title 	     ??   $post->title;
+		$post->description  = request()->description ??   $post->description;
+		$post->local 	    = request()->local 	     ??   $post->local;
+		$post->latitude     = request()->latitude    ??   $post->latitude;
+		$post->longitude    = request()->longitude   ??   $post->longitude;
 
 		$post->save();
 
