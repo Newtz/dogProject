@@ -29,9 +29,14 @@ class APIController extends Controller
                 ], 401);
             }
 
+            $user = User::select('id', 'name', 'email')->where('email', $input['email'] )->get();
+
+           // dd($user);
+
             return response()->json([
                 'success' => true,
                 'token' => $token,
+                'user'=>$user,
             ]);
         }
 
