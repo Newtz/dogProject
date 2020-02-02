@@ -67,7 +67,5 @@ class PostController extends Controller
     {
         response()->json($this->postRepository->dislike($postId), 200);
     }
-
-
 }
 

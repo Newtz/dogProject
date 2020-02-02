@@ -8,6 +8,7 @@ use App\Interfaces\ImageRepositoryInterface;
 use App\Models\Image;
 use App\Models\Post;
 use Auth;
+use Storage;
 
 class ImageRepository implements ImageRepositoryInterface
 {
@@ -43,6 +44,8 @@ class ImageRepository implements ImageRepositoryInterface
 	{
 		$image = Image::find($imageId);
 
+		$this->deleteFilesByPost($image->post_id);
+
 		if(!$image) {
             return response()->json([
                 'message'   => 'Record not found',
@@ -56,11 +59,20 @@ class ImageRepository implements ImageRepositoryInterface
 
     public function deleteAllImagesByPostId($postId)
     {
-        $post = Post::findOrFail($postId);
+		$this->deleteFilesByPost($postId);
+		$post = Post::findOrFail($postId);
 
         $post->images()->forceDelete();
+	}
+	
+	private function deleteFilesByPost($postId)
+	{
+		$images = Image::where('post_id', $postId)->get();
 
-        return response()->json(['message'=>'All records were deleted'], 200);
-    }
+		foreach($images as $image)
+		{
+			Storage::disk('public')->delete($image->image_path);
+		}
+	}
 
 }
