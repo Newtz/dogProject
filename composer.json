@@ -6,7 +6,7 @@
         "framework",
         "laravel",
         "dog",
-        "help",
+        "help"
     ],
     "license": "MIT",
     "require": {

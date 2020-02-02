@@ -19,16 +19,18 @@ Route::group(['namespace'=> 'API'], function(){
 });
 
 Route::group(['middleware' => 'auth.jwt', 'namespace'=> 'API'], function(){
-	Route::get('post'			   		   , 'PostController@index'  );
+	Route::get('posts'			   		   , 'PostController@index'  );
 	Route::post('post'			   		   , 'PostController@store'  );
-	Route::get('post/{postId}'	   		   , 'PostController@show'   );
-	Route::post('post/update/{postId}'	   , 'PostController@update' );
-    Route::post('post/delete/{postId}'	   , 'PostController@destroy');
+	Route::get('posts/{postId}'	   		   , 'PostController@show'   );
+	Route::post('posts/{postId}/like'	   , 'PostController@like'   );
+	Route::post('posts/{postId}/dislike'   , 'PostController@dislike');
+	Route::post('posts/update/{postId}'	   , 'PostController@update' );
+    Route::post('posts/delete/{postId}'	   , 'PostController@destroy');
 
-    Route::get('comment/{postId}'			   	   , 'CommentController@index'  );
+    Route::get('comments/{postId}'			   	   , 'CommentController@index'  );
 	Route::post('comment'			   		       , 'CommentController@store'  );
-	Route::get('comment/{commentId}'	   		   , 'CommentController@show'   );
-	Route::post('comment/update/{commentId}'	   , 'CommentController@update' );
-    Route::post('comment/delete/{commentId}'	   , 'CommentController@destroy');
-    Route::post('comment/delete/all/{postId}'	   , 'CommentController@destroyAll');
+	Route::get('comments/{commentId}'	   		   , 'CommentController@show'   );
+	Route::post('comments/update/{commentId}'	   , 'CommentController@update' );
+    Route::post('comments/delete/{commentId}'	   , 'CommentController@destroy');
+    Route::post('comments/delete/all/{postId}'	   , 'CommentController@destroyAll');
 });

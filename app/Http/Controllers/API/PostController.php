@@ -58,6 +58,16 @@ class PostController extends Controller
     	return $this->postRepository->deletePost($postId);
     }
 
+    public function like($postId)
+    {
+        response()->json($this->postRepository->like($postId), 200);
+    }
+
+    public function dislike($postId)
+    {
+        response()->json($this->postRepository->dislike($postId), 200);
+    }
+
 
 }
 

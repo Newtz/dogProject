@@ -19,7 +19,6 @@ class CreatePostsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('title', 200);
             $table->text('description');
-            $table->text('local');
             $table->text('latitude');
             $table->text('longitude');
             $table->enum('status', ['active', 'inactive']);

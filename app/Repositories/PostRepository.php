@@ -8,6 +8,7 @@ use App\Interfaces\PostRepositoryInterface;
 use App\Interfaces\CommentInterface;
 use App\Interfaces\ImageRepositoryInterface;
 use App\Models\Post;
+use App\Models\LikeDislike;
 use Auth;
 
 class PostRepository implements PostRepositoryInterface
@@ -50,7 +51,6 @@ class PostRepository implements PostRepositoryInterface
 		$post->title 	    = $request->title;
 		$post->user_id 	    = Auth::user()->id;
 		$post->description  = $request->description;
-		$post->local 	    = $request->local;
 		$post->latitude     = $request->latitude;
 		$post->longitude    = $request->longitude;
 
@@ -82,7 +82,6 @@ class PostRepository implements PostRepositoryInterface
 
 		$post->title 	    = request()->title 	     ??   $post->title;
 		$post->description  = request()->description ??   $post->description;
-		$post->local 	    = request()->local 	     ??   $post->local;
 		$post->latitude     = request()->latitude    ??   $post->latitude;
 		$post->longitude    = request()->longitude   ??   $post->longitude;
 
@@ -91,5 +90,24 @@ class PostRepository implements PostRepositoryInterface
 		return $post;
 	}
 
+	public function like($postId)
+	{
+		$post = LikeDislike::updateOrCreate(
+			['user_id'=> Auth::user()->id, 'post_id' => $postId],
+			['likeDisklike'=> 1]
+		);
+
+		return $post;
+	}
+
+	public function dislike($postId)
+	{
+		$post = LikeDislike::updateOrCreate(
+			['user_id'=> Auth::user()->id, 'post_id' => $postId],
+			['likeDisklike'=> 0]
+		);
+
+		return $post;
+	}
 
 }

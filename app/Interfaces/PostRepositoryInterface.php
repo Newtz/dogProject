@@ -17,4 +17,8 @@ interface PostRepositoryInterface
 
 	public function updatePost($postId);
 
+	public function like($postId);
+
+	public function dislike($postId);
+
 }
