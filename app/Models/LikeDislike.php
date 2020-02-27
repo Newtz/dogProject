@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class LikeDislike extends Model
 {
     protected $guarded    = [];
-    public    $timestamps = false;
+    public $timestamps = false;
     protected $table      = 'likeDislike';
 }

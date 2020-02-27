@@ -11,12 +11,11 @@ use Auth;
 
 class CommentRepository implements CommentInterface
 {
-
     public function findById($commentId)
     {
         $comment = Comment::with(['post'])->findOrFail($commentId);
 
-		return $comment;
+        return $comment;
     }
 
 
@@ -44,9 +43,9 @@ class CommentRepository implements CommentInterface
     {
         $comment = Comment::findOrFail($commentId);
 
-		$comment->delete();
+        $comment->delete();
 
-		return response()->json(['message'=>'Record Deleted'], 200);
+        return response()->json(['message'=>'Record Deleted'], 200);
     }
 
     public function deleteAllCommentsByPost($postId)
@@ -57,5 +56,4 @@ class CommentRepository implements CommentInterface
 
         return response()->json(['message'=>'All records were deleted'], 200);
     }
-
 }

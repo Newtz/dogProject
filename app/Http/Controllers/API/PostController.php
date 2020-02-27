@@ -13,7 +13,6 @@ use App\Models\Image;
 
 class PostController extends Controller
 {
-
     private $postRepository;
     private $imageRepository;
     private $requestIndex;
@@ -35,27 +34,26 @@ class PostController extends Controller
         $post          =  $this->postRepository->createPost($request);
         $numberOfImagesUploaded = GeneralHelper::uploadImage($request, $this->requestIndex);
 
-        for($i = 0; $i < $numberOfImagesUploaded; $i++)
-        {
+        for ($i = 0; $i < $numberOfImagesUploaded; $i++) {
             $image =  $this->imageRepository->saveImagePath($request['path_'.$i], $post->id);
         }
 
-    	return response()->json($post->with(['images'])->findOrFail($post->id), 201);
+        return response()->json($post->with(['images'])->findOrFail($post->id), 201);
     }
 
     public function show($postId)
     {
-    	return response()->json($this->postRepository->findById($postId), 200);
+        return response()->json($this->postRepository->findById($postId), 200);
     }
 
     public function update(Request $request, $postId)
     {
-    	return response()->json($this->postRepository->updatePost($postId), 200);
+        return response()->json($this->postRepository->updatePost($postId), 200);
     }
 
     public function destroy($postId)
     {
-    	return $this->postRepository->deletePost($postId);
+        return $this->postRepository->deletePost($postId);
     }
 
     public function like($postId)
@@ -68,4 +66,3 @@ class PostController extends Controller
         response()->json($this->postRepository->dislike($postId), 200);
     }
 }
-

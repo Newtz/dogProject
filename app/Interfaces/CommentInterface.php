@@ -4,7 +4,6 @@ namespace App\Interfaces;
 
 interface CommentInterface
 {
-
     public function findById($commentId);
 
     public function saveComment($request);

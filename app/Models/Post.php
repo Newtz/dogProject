@@ -10,7 +10,7 @@ use App\User;
 class Post extends Model
 {
     protected $fillable = ['id','title','description','local','latitude',
-    						'longitude','status','image_name'];
+                            'longitude','status','image_name'];
 
     protected $table    = 'posts';
 

@@ -12,67 +12,65 @@ use Storage;
 
 class ImageRepository implements ImageRepositoryInterface
 {
-	public function all()
-	{
-		$images = Image::with(['post'])->get();
+    public function all()
+    {
+        $images = Image::with(['post'])->get();
 
- 		return $images;
-	}
+        return $images;
+    }
 
 
-	public function imagesByPost($postId)
-	{
+    public function imagesByPost($postId)
+    {
         $image = Image::with(['post'])->where('post_id', $postId)->get();
 
-		return $image;
-	}
+        return $image;
+    }
 
 
-	public function saveImagePath($path, $postId)
-	{
-		$image = new Image;
+    public function saveImagePath($path, $postId)
+    {
+        $image = new Image;
 
-		$image->image_path 		= $path;
-		$image->post_id 	    = $postId;
+        $image->image_path 		= $path;
+        $image->post_id 	    = $postId;
 
-		$image->save();
+        $image->save();
 
-		 return $image;
-	}
+        return $image;
+    }
 
-	public function deleteImage($imageId)
-	{
-		$image = Image::find($imageId);
+    public function deleteImage($imageId)
+    {
+        $image = Image::find($imageId);
 
-		$this->deleteFilesByPost($image->post_id);
+        $this->deleteFilesByPost($image->post_id);
 
-		if(!$image) {
+        if (!$image) {
             return response()->json([
                 'message'   => 'Record not found',
             ], 404);
         }
 
-		$image->delete();
+        $image->delete();
 
-		return response()->json(['message'=>'Record Deleted'], 200);
+        return response()->json(['message'=>'Record Deleted'], 200);
     }
 
     public function deleteAllImagesByPostId($postId)
     {
-		$this->deleteFilesByPost($postId);
-		$post = Post::findOrFail($postId);
+        $this->deleteFilesByPost($postId);
+        $post = Post::findOrFail($postId);
 
         $post->images()->forceDelete();
-	}
-	
-	private function deleteFilesByPost($postId)
-	{
-		$images = Image::where('post_id', $postId)->get();
+    }
+    
+    private function deleteFilesByPost($postId)
+    {
+        $images = Image::where('post_id', $postId)->get();
 
-		foreach($images as $image)
-		{
-			Storage::disk('public')->delete($image->image_path);
-		}
-	}
-
+        foreach ($images as $image) {
+            Storage::disk('public')->delete($image->image_path);
+        }
+    }
 }

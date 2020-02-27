@@ -29,7 +29,7 @@ class CommentController extends Controller
     {
         $comment =  $this->commentRepository->saveComment($request);
 
-    	return response()->json($comment->with(['post'])->findOrFail($comment->id), 201);
+        return response()->json($comment->with(['post'])->findOrFail($comment->id), 201);
     }
 
     public function show($commentId)
