@@ -1,6 +1,6 @@
 <p align="center"><img src="https://i.imgur.com/FbTY315.png" width="400"></p>
 
-## About PetFinder
+## About DogAçao
 
 Initial project that aims in creating a commuity focused on finding home to lost animals.:
 
