@@ -1,4 +1,4 @@
-<p align="center"><img src="https://imgur.com/FbTY315" width="400"></p>
+<p align="center"><img src="https://i.imgur.com/FbTY315.png" width="400"></p>
 
 ## About PetFinder
 
