@@ -18,7 +18,7 @@ Route::group(['namespace'=> 'API'], function(){
     Route::post('register', 'APIController@register');
 });
 
-Route::group(['middleware' => 'auth.jwt', 'namespace'=> 'API'], function(){
+Route::group(['middleware' => ['auth.jwt', 'cors'], 'namespace'=> 'API'], function(){
 	Route::get('posts'			   		   , 'PostController@index'  );
 	Route::post('post'			   		   , 'PostController@store'  );
 	Route::get('posts/{postId}'	   		   , 'PostController@show'   );
