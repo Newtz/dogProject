@@ -15,7 +15,9 @@ use Illuminate\Http\Request;
 
 Route::group(['namespace'=> 'API'], function(){
     Route::post('login', 'APIController@login');
-    Route::post('register', 'APIController@register');
+	Route::post('register', 'APIController@register');
+	Route::post('password/email','ForgotPasswordController@sendResetLinkEmail');
+	Route::post('password/reset','ResetPasswordController@reset');
 });
 
 Route::group(['middleware' => ['auth.jwt', 'cors'], 'namespace'=> 'API'], function(){
