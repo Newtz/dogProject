@@ -8,8 +8,6 @@ use App\Interfaces\PostRepositoryInterface;
 use App\Interfaces\ImageRepositoryInterface;
 use App\Http\Requests\PostRequest;
 use App\Helpers\GeneralHelper;
-use App\Models\Post;
-use App\Models\Image;
 
 class PostController extends Controller
 {
@@ -58,11 +56,16 @@ class PostController extends Controller
 
     public function like($postId)
     {
-        response()->json($this->postRepository->like($postId), 200);
+        return response()->json($this->postRepository->like($postId), 200);
     }
 
     public function dislike($postId)
     {
-        response()->json($this->postRepository->dislike($postId), 200);
+        return response()->json($this->postRepository->dislike($postId), 200);
+    }
+
+    public function authUserPosts()
+    {
+        return response()->json($this->postRepository->authUserPosts(), 200);
     }
 }

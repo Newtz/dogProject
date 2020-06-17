@@ -27,7 +27,8 @@ Route::group(['middleware' => ['auth.jwt', 'cors'], 'namespace'=> 'API'], functi
 	Route::post('posts/{postId}/like'	   , 'PostController@like'   );
 	Route::post('posts/{postId}/dislike'   , 'PostController@dislike');
 	Route::post('posts/update/{postId}'	   , 'PostController@update' );
-    Route::post('posts/delete/{postId}'	   , 'PostController@destroy');
+	Route::post('posts/delete/{postId}'	   , 'PostController@destroy');
+	Route::get('posts-users'	   	   , 'PostController@authUserPosts');
 
     Route::get('comments/{postId}'			   	   , 'CommentController@index'  );
 	Route::post('comment'			   		       , 'CommentController@store'  );

@@ -19,4 +19,6 @@ interface PostRepositoryInterface
     public function like($postId);
 
     public function dislike($postId);
+
+    public function authUserPosts();
 }

@@ -108,4 +108,10 @@ class PostRepository implements PostRepositoryInterface
 
         return $post;
     }
+
+    public function authUserPosts()
+    {
+        $posts = Post::with(['images'])->where('user_id', Auth::user()->id)->get();
+        return $posts;
+    }
 }
